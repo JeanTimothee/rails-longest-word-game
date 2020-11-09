@@ -1,0 +1,14 @@
+<ul>
+  <% @letters_string.split(" ").each do |letter| %>
+    <li><%= letter %></li>
+  <% end %>
+</ul>
+
+<h2><%= params[:word] %></h2>
+<p><%= @time %></p>
+<h1>
+  <%= @result %>
+  <%= @score %>
+</h1>
+
+<%= link_to "Try again", new_path %>
