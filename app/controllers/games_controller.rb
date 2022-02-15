@@ -7,6 +7,7 @@ class GamesController < ApplicationController
       @letters << ('a'..'z').to_a.sample.upcase
     end
     @letters
+    session[:total_score] = 0 unless session[:total_score].present?
   end
 
   def score
@@ -24,7 +25,8 @@ class GamesController < ApplicationController
   def results
     @result = 'The word is valid!'
     @score = @word.length
-    @time = Time.now - params[:time]
+    @time = (Time.now - Time.new(params[:time])) / 1000
+    session[:total_score] += @score
   end
 
   def english_word?(word)
